@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface TestLink {
     id: string;
@@ -27,7 +28,7 @@ const subjects: Subject[] = [
     {
         id: "algebra",
         name: "Algebra",
-        icon: "∑",
+        icon: "/images/algebra-logo.png",
         description: "Algebraik ifodalar, tenglamalar, tengsizliklar va funksiyalar.",
         difficulties: [
             {
@@ -53,7 +54,7 @@ const subjects: Subject[] = [
     {
         id: "geometry",
         name: "Geometriya",
-        icon: "◬",
+        icon: "/images/geometry-logo.png",
         description: "Planimetriya, stereometriya va trigonometrik masalalar.",
         difficulties: [
             {
@@ -118,14 +119,19 @@ export default function MockTests() {
                                 className="premium-card cursor-pointer group hover:border-blue-500 transition-all"
                             >
                                 <div className="flex items-center space-x-6">
-                                    <div className="w-20 h-20 bg-blue-600 rounded-3xl flex items-center justify-center text-white text-4xl font-bold shadow-xl shadow-blue-100 group-hover:rotate-6 transition-transform">
-                                        {sub.icon}
+                                    <div className="relative w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-700 rounded-3xl overflow-hidden flex items-center justify-center shadow-xl shadow-blue-100 group-hover:rotate-6 transition-transform">
+                                        <Image
+                                            src={sub.icon}
+                                            alt={sub.name}
+                                            fill
+                                            className="object-contain p-2"
+                                        />
                                     </div>
                                     <div className="flex-grow">
                                         <h3 className="text-3xl font-bold text-gray-900 mb-2">{sub.name}</h3>
                                         <p className="text-gray-500 text-sm leading-relaxed">{sub.description}</p>
                                     </div>
-                                    <div className="text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <div className="text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity pr-4">
                                         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                                         </svg>
@@ -152,13 +158,13 @@ export default function MockTests() {
                                     key={diff.level}
                                     onClick={() => setSelectedDifficulty(diff)}
                                     className={`p-8 rounded-[2rem] border-2 cursor-pointer transition-all ${diff.level === "Oson" ? "border-green-100 hover:bg-green-50" :
-                                            diff.level === "O'rta" ? "border-yellow-100 hover:bg-yellow-50" :
-                                                "border-red-100 hover:bg-red-50"
+                                        diff.level === "O'rta" ? "border-yellow-100 hover:bg-yellow-50" :
+                                            "border-red-100 hover:bg-red-50"
                                         }`}
                                 >
                                     <h4 className={`text-2xl font-bold mb-4 ${diff.level === "Oson" ? "text-green-600" :
-                                            diff.level === "O'rta" ? "text-yellow-600" :
-                                                "text-red-600"
+                                        diff.level === "O'rta" ? "text-yellow-600" :
+                                            "text-red-600"
                                         }`}>{diff.level}</h4>
                                     <p className="text-sm text-gray-500 mb-6">Ushbu darajada {diff.tests.length} ta test mavjud.</p>
                                     <div className="flex items-center text-gray-900 font-bold uppercase tracking-widest text-xs">
