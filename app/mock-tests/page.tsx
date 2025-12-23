@@ -111,15 +111,15 @@ export default function MockTests() {
 
                 {/* Step 1: Select Subject */}
                 {!selectedSubject && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-in">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-in items-stretch">
                         {subjects.map((sub) => (
                             <div
                                 key={sub.id}
                                 onClick={() => setSelectedSubject(sub)}
-                                className="premium-card cursor-pointer group hover:border-blue-500 transition-all"
+                                className="premium-card cursor-pointer group hover:border-blue-500 transition-all flex flex-col h-full"
                             >
-                                <div className="flex items-center space-x-6">
-                                    <div className="relative w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-700 rounded-3xl overflow-hidden flex items-center justify-center shadow-xl shadow-blue-100 group-hover:rotate-6 transition-transform">
+                                <div className="flex items-center space-x-6 h-full">
+                                    <div className="relative w-20 h-20 flex-shrink-0 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl overflow-hidden flex items-center justify-center shadow-lg shadow-blue-100 group-hover:rotate-3 transition-transform">
                                         <Image
                                             src={sub.icon}
                                             alt={sub.name}
@@ -128,12 +128,12 @@ export default function MockTests() {
                                         />
                                     </div>
                                     <div className="flex-grow">
-                                        <h3 className="text-3xl font-bold text-gray-900 mb-2">{sub.name}</h3>
-                                        <p className="text-gray-500 text-sm leading-relaxed">{sub.description}</p>
+                                        <h3 className="text-2xl font-bold text-gray-900 mb-1">{sub.name}</h3>
+                                        <p className="text-gray-500 text-xs leading-relaxed line-clamp-2">{sub.description}</p>
                                     </div>
-                                    <div className="text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity pr-4">
-                                        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                                    <div className="text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity pr-2 flex-shrink-0">
+                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
                                         </svg>
                                     </div>
                                 </div>
