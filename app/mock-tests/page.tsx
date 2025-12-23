@@ -116,22 +116,22 @@ export default function MockTests() {
                             <div
                                 key={sub.id}
                                 onClick={() => setSelectedSubject(sub)}
-                                className="premium-card cursor-pointer group hover:border-blue-500 transition-all flex flex-col h-full"
+                                className="premium-card cursor-pointer group hover:border-blue-500 transition-all flex flex-col min-h-[140px]"
                             >
-                                <div className="flex items-center space-x-6 h-full">
-                                    <div className="relative w-20 h-20 flex-shrink-0 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl overflow-hidden flex items-center justify-center shadow-lg shadow-blue-100 group-hover:rotate-3 transition-transform">
+                                <div className="flex items-center space-x-6 h-full py-2">
+                                    <div className="relative w-20 h-20 flex-shrink-0 rounded-2xl overflow-hidden border border-gray-100 shadow-sm group-hover:shadow-md transition-all group-hover:scale-105 duration-300">
                                         <Image
                                             src={sub.icon}
                                             alt={sub.name}
                                             fill
-                                            className="object-contain p-2"
+                                            className="object-cover"
                                         />
                                     </div>
-                                    <div className="flex-grow">
-                                        <h3 className="text-2xl font-bold text-gray-900 mb-1">{sub.name}</h3>
-                                        <p className="text-gray-500 text-xs leading-relaxed line-clamp-2">{sub.description}</p>
+                                    <div className="flex-grow flex flex-col justify-center">
+                                        <h3 className="text-2xl font-bold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors">{sub.name}</h3>
+                                        <p className="text-gray-500 text-xs leading-relaxed line-clamp-2 pr-4">{sub.description}</p>
                                     </div>
-                                    <div className="text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity pr-2 flex-shrink-0">
+                                    <div className="text-blue-500 opacity-0 group-hover:opacity-100 transition-all translate-x-2 group-hover:translate-x-0 pr-2 flex-shrink-0">
                                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
                                         </svg>
