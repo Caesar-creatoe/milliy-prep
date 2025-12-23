@@ -26,7 +26,7 @@ const Sqrt = ({ children }: { children: React.ReactNode }) => (
 
 const questions: { id: number, text: React.ReactNode, options: string[], optionsNodes?: React.ReactNode[], correct: number }[] = [
     {
-        id: 9,
+        id: 1,
         text: (
             <span>
                 x natural soni uchun <Fraction n="240" d="x" /> + <Fraction n="x" d="6" />
@@ -37,7 +37,7 @@ const questions: { id: number, text: React.ReactNode, options: string[], options
         correct: 0 // A
     },
     {
-        id: 10,
+        id: 2,
         text: (
             <span>
                 <Sqrt><>log<Sub>2</Sub>(x-1) + 1</></Sqrt> - <Sqrt><>log<Sub>2</Sub>(2x-2)</></Sqrt> ifodaning
@@ -54,7 +54,7 @@ const questions: { id: number, text: React.ReactNode, options: string[], options
         correct: 1 // B
     },
     {
-        id: 11,
+        id: 3,
         text: (
             <span>
                 {"{b"}
@@ -68,7 +68,7 @@ const questions: { id: number, text: React.ReactNode, options: string[], options
         correct: 2 // C
     },
     {
-        id: 12,
+        id: 4,
         text: (
             <span>
                 (<Sqrt><><Sqrt>3</Sqrt> + <Sqrt>2</Sqrt></></Sqrt> - <Sqrt><><Sqrt>3</Sqrt> - <Sqrt>2</Sqrt></></Sqrt>)
@@ -86,7 +86,7 @@ const questions: { id: number, text: React.ReactNode, options: string[], options
         correct: 3 // D
     },
     {
-        id: 13,
+        id: 5,
         text: (
             <span>
                 Birinchi hadi 16 ga, ikkinchi hadi 13 ga teng bo'lgan arifmetik progressiyaning nechinchi hadi -41 ga teng?
@@ -96,7 +96,7 @@ const questions: { id: number, text: React.ReactNode, options: string[], options
         correct: 2 // C
     },
     {
-        id: 14,
+        id: 6,
         text: (
             <span>
                 Tengsizlikni yeching: log<Sub>2</Sub> log<Sub>16</Sub>(x<Sup>2</Sup> - 1) &lt; 2
@@ -112,7 +112,7 @@ const questions: { id: number, text: React.ReactNode, options: string[], options
         correct: 2 // C
     },
     {
-        id: 15,
+        id: 7,
         text: (
             <span>
                 (<Fraction n="4" d="15" />)<Sup>x + 2<Sqrt>x</Sqrt> - 1</Sup> = (<Fraction n="15" d="4" />)<Sup>x + <Sqrt>x</Sqrt> + 1</Sup>
@@ -129,7 +129,7 @@ const questions: { id: number, text: React.ReactNode, options: string[], options
         correct: 1 // B
     },
     {
-        id: 16,
+        id: 8,
         text: (
             <span>
                 x<Sup>2</Sup> - 4x + k = 0 tenglamaning ildizlari kvadratlarining farqi 24 ga teng bo'lsa, k ning qiymatini toping.
@@ -137,6 +137,156 @@ const questions: { id: number, text: React.ReactNode, options: string[], options
         ),
         options: ["A) -3", "B) 5", "C) -5", "D) 3"],
         correct: 2 // C
+    },
+    {
+        id: 9,
+        text: (
+            <span>
+                To'g'ri burchakli uchburchakning katetlari 6 va 8 ga teng. Gipozenuzaga tushirilgan balandlikni toping.
+            </span>
+        ),
+        options: ["A) 4.8", "B) 5", "C) 4.5", "D) 4"],
+        correct: 0 // A
+    },
+    {
+        id: 10,
+        text: (
+            <span>
+                Doiraning radiusi 10 sm. Sektorni yoyi 36° bo'lgan qismining yuzini toping.
+            </span>
+        ),
+        options: ["A) 10π", "B) 5π", "C) 20π", "D) 3.6π"],
+        optionsNodes: [
+            <>A) 10π</>,
+            <>B) 5π</>,
+            <>C) 20π</>,
+            <>D) 3.6π</>
+        ],
+        correct: 0 // A
+    },
+    {
+        id: 11,
+        text: (
+            <span>
+                Uchburchakning ikki tomoni 5 va 8 ga teng, ular orasidagi burchak 60°. Uchinchi tomonni toping.
+            </span>
+        ),
+        options: ["A) 7", "B) 9", "C) √39", "D) 10"],
+        optionsNodes: [
+            <>A) 7</>,
+            <>B) 9</>,
+            <>C) <Sqrt>39</Sqrt></>,
+            <>D) 10</>
+        ],
+        correct: 0 // A
+    },
+    {
+        id: 12,
+        text: (
+            <span>
+                Muntazam oltiburchakning ichki burchaklari yig'indisini toping.
+            </span>
+        ),
+        options: ["A) 720°", "B) 540°", "C) 900°", "D) 1080°"],
+        correct: 0 // A
+    },
+    {
+        id: 13,
+        text: (
+            <span>
+                Kubning to'la sirti 150 sm<Sup>2</Sup>. Kubning hajmini toping.
+            </span>
+        ),
+        options: ["A) 125 sm^3", "B) 100 sm^3", "C) 216 sm^3", "D) 64 sm^3"],
+        optionsNodes: [
+            <>A) 125 sm<Sup>3</Sup></>,
+            <>B) 100 sm<Sup>3</Sup></>,
+            <>C) 216 sm<Sup>3</Sup></>,
+            <>D) 64 sm<Sup>3</Sup></>
+        ],
+        correct: 0 // A
+    },
+    {
+        id: 14,
+        text: (
+            <span>
+                A(2; 3) va B(5; 7) nuqtalar orasidagi masofani toping.
+            </span>
+        ),
+        options: ["A) 5", "B) √13", "C) 7", "D) 6"],
+        correct: 0 // A
+    },
+    {
+        id: 15,
+        text: (
+            <span>
+                Sinus x = 1/2 tenglamaning [0; π] oraliqdagi barcha ildizlarini toping.
+            </span>
+        ),
+        options: ["A) π/6, 5π/6", "B) π/6", "C) π/3", "D) π/4"],
+        optionsNodes: [
+            <>A) <Fraction n="π" d="6" />, <Fraction n="5π" d="6" /></>,
+            <>B) <Fraction n="π" d="6" /></>,
+            <>C) <Fraction n="π" d="3" /></>,
+            <>D) <Fraction n="π" d="4" /></>
+        ],
+        correct: 0 // A
+    },
+    {
+        id: 16,
+        text: (
+            <span>
+                Parallelogrammning tomonlari 4 va 6, kichik diagonali esa 5. Katta diagonalini toping.
+            </span>
+        ),
+        options: ["A) √79", "B) 8", "C) √52", "D) 7"],
+        optionsNodes: [
+            <>A) <Sqrt>79</Sqrt></>,
+            <>B) 8</>,
+            <>C) <Sqrt>52</Sqrt></>,
+            <>D) 7</>
+        ],
+        correct: 0 // A
+    },
+    {
+        id: 17,
+        text: (
+            <span>
+                Silindrning asosi radiusi 3, balandligi 4. Silindrning hajmini toping.
+            </span>
+        ),
+        options: ["A) 36π", "B) 12π", "C) 24π", "D) 48π"],
+        correct: 0 // A
+    },
+    {
+        id: 18,
+        text: (
+            <span>
+                Ikkita o'xshash uchburchakning yuzalari nisbati 9:16. Ularning mos tomonlari nisbatini toping.
+            </span>
+        ),
+        options: ["A) 3:4", "B) 9:16", "C) 81:256", "D) 2:3"],
+        correct: 0 // A
+    },
+    {
+        id: 19,
+        text: (
+            <span>
+                Vektorlar a(2; -1) va b(3; 4) berilgan. Ularning skalyar ko'paytmasini toping.
+            </span>
+        ),
+        options: ["A) 2", "B) 10", "C) -2", "D) 5"],
+        correct: 0 // A
+    },
+    {
+        id: 20,
+        text: (
+            <span>
+                Konusning yasovchisi 5, balandligi 4. Konusning asosi yuzini toping.
+            </span>
+        ),
+        options: ["A) 9π", "B) 16π", "C) 25π", "D) 12π"],
+        correct: 0 // A
     }
 ];
 
