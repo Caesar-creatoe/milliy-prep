@@ -18,9 +18,11 @@ const Sub = ({ children }: { children: React.ReactNode }) => (
     <sub className="text-xs ml-0.5 font-serif">{children}</sub>
 );
 
-const Sqrt = ({ children }: { children: React.ReactNode }) => (
-    <span className="font-serif italic whitespace-nowrap">
-        &radic;<span className="border-t border-gray-800 px-0.5">{children}</span>
+const Sqrt = ({ children, n }: { children: React.ReactNode, n?: string }) => (
+    <span className="font-serif italic whitespace-nowrap inline-flex items-start">
+        {n ? <sup className="text-[10px] -mr-1 mt-1 font-bold not-italic">{n}</sup> : null}
+        <span className="text-xl -mr-0.5">&radic;</span>
+        <span className="border-t border-gray-800 px-0.5 mt-1.5 leading-none">{children}</span>
     </span>
 );
 
@@ -29,87 +31,83 @@ const questions = [
         id: 1,
         text: (
             <span>
-                x, y va z sonlari x &lt; y &lt; z tengsizlikni qanoatlantiruvchi ketma-ket toq sonlar.
-                <Fraction n={<>(z-x) \u00b7 (x-y)<Sup>2</Sup></>} d={<>(y-z)</>} />
-                ifodaning qiymatini toping.
+                1. x, y va z raqamlar uchun ushbu x + y = 10, <Fraction n="x" d="y" /> + 2 = z tengliklar o'rinli bo'lsa y ning qabul qilishi mumkin bo'lgan qiymatlari yig'indisini toping.
             </span>
         ),
-        options: ["A) -16", "B) -8", "C) -4", "D) 4"],
-        correct: 1 // B
+        options: ["A) 5", "B) 8", "C) 7", "D) 3"],
+        correct: 1 // B (y=2, x=8; y=5, x=5 doesn't work for z digit)
     },
     {
         id: 2,
         text: (
             <span>
-                Hisoblang: {"(("} <Fraction n="7" d="9" /> - <Fraction n="47" d="72" /> {") : 1.25 + "} <Fraction n="7" d="40" /> {") : (0.358 - 0.108) \u00d7 1.6 - "} <Fraction n="9" d="25" />
+                2. Hisoblang: 0,4(3) + 0,6(2) \u00b7 2 <Fraction n={<>3 <Fraction n="2" d="5" /> - <Fraction n="1" d="4" /></>} d={<>0,5(8) \u00b7 <Fraction n="50" d="53" /></>} />
             </span>
         ),
-        options: ["A) 7/5", "B) 1", "C) 2/5", "D) 9/5"],
+        options: ["A) 43/90", "B) 41/92", "C) 13/45", "D) 22/45"],
         optionsNodes: [
-            <>A) <Fraction n="7" d="5" /></>,
-            <>B) 1</>,
-            <>C) <Fraction n="2" d="5" /></>,
-            <>D) <Fraction n="9" d="5" /></>
+            <>A) <Fraction n="43" d="90" /></>,
+            <>B) <Fraction n="41" d="92" /></>,
+            <>C) <Fraction n="13" d="45" /></>,
+            <>D) <Fraction n="22" d="45" /></>
         ],
-        correct: 0 // A
+        correct: 2 // C
     },
     {
         id: 3,
         text: (
             <>
-                <p className="mb-4">Agar rasmda ko'rsatilgan A va C nuqtalarda joylashgan ikkita avtomobil bir vaqtda o'zaro qarama-qarshi yo'nalishda harakatlana boshlasa B nuqtada uchrashadi. Agar ikkala avtomobil bir vaqtda bir yo'nalishda harakatlana boshlasa D nuqtasida yonma-yon keladi. |CD| masofani (km) toping.</p>
-                <div className="my-6 flex justify-center bg-gray-50 p-4 rounded-xl border border-dashed border-gray-300">
-                    <img src="/images/q3-motion-diagram.png" alt="Q3 Motion Diagram" className="max-w-full h-auto" />
-                </div>
+                <p className="mb-4">3. Tezligi v km/soat bo'lgan avtomobil ikki shahar orasidagi masofani t soatda o'tadi. Agar avtomobil qaytishda tezligini 20 km/soat ga oshirsa qancha vaqtda qaytib keladi?</p>
             </>
         ),
-        options: ["A) 80", "B) 100", "C) 120", "D) 140"],
-        correct: 2 // C
+        options: ["A) (v-20)t / v", "B) (v+20)v / t", "C) v / (v+20)", "D) vt / (v+20)"],
+        optionsNodes: [
+            <>A) <Fraction n="(v-20)t" d="v" /></>,
+            <>B) <Fraction n="(v+20)v" d="t" /></>,
+            <>C) <Fraction n="v" d="v+20" /></>,
+            <>D) <Fraction n="vt" d="v+20" /></>
+        ],
+        correct: 3 // D
     },
     {
         id: 4,
         text: (
             <span>
-                20% foyda bilan x so'mga sotilgan bir mahsulot, 40% zarar bilan y so'mga sotilmoqda. Shunga ko'ra,
-                <Fraction n="x" d="y" />
-                nisbat nechaga teng bo'ladi?
+                4. Zilola juma kuni cho'ntagidagi pulning 20% ini sarfladi. Shanba kuni esa juma kuni sarflamagan pulining 30% icha va juma kuni sarflagan pulining 80% icha pul sarfladi. Yakshanba kuni esa qolgan pulining 70% ini sarfladi. U yakshanba kuni dastlabki jami pulining necha foizini sarflagan?
             </span>
         ),
-        options: ["A) 1.5", "B) 3", "C) 2", "D) 2.5"],
-        correct: 2 // C
+        options: ["A) 28", "B) 18", "C) 24", "D) 14"],
+        correct: 3 // D
     },
     {
         id: 5,
         text: (
             <span>
-                Ifodani soddalashtiring:
-                <Fraction n={<>x<Sup>n+1</Sup> + x<Sup>n</Sup></>} d={<>x<Sup>n-2</Sup></>} /> :
-                <Fraction n={<>x<Sup>n+2</Sup> - x<Sup>n-1</Sup></>} d={<>x<Sup>n+1</Sup></>} />
+                5. 0,00024 \u00b7 0,0025 ko'paytmani standart shaklda yozing.
             </span>
         ),
-        options: ["A) x^4", "B) 1/(x+1)", "C) x(x + 1)", "D) 1 - 1/x"],
+        options: ["A) 0,6 \u00b7 10^-6", "B) 6 \u00b7 10^-6", "C) 6 \u00b7 10^-7", "D) 0,6 \u00b7 10^-7"],
         optionsNodes: [
-            <>A) x<Sup>4</Sup></>,
-            <>B) <Fraction n="1" d={<>x+1</>} /></>,
-            <>C) x(x + 1)</>,
-            <>D) 1 - <Fraction n="1" d="x" /></>
+            <>A) 0,6 \u00b7 10<Sup>-6</Sup></>,
+            <>B) 6 \u00b7 10<Sup>-6</Sup></>,
+            <>C) 6 \u00b7 10<Sup>-7</Sup></>,
+            <>D) 0,6 \u00b7 10<Sup>-7</Sup></>
         ],
-        correct: 0 // A
+        correct: 2 // C (6 \u00b7 10^-7)
     },
     {
         id: 6,
         text: (
             <span>
-                Umumiy hadi a<Sub>n</Sub> = <Fraction n="1" d={<>n<Sup>2</Sup> + n</>} /> bo'lgan {"{an}"} ketma-ketligida
-                a<Sub>1</Sub> + a<Sub>2</Sub> + a<Sub>3</Sub> + ... + a<Sub>12</Sub> yig'indining natijasi nechaga teng?
+                6. Ifodani soddalashtiring: {"("} <Fraction n="a" d="a+1" /> + <Fraction n="2a" d={<>a<Sup>2</Sup>-1</>} /> {") \u00b7 a"} <Sup>-1</Sup> + {"("} <Fraction n="a" d="a-1" /> - <Fraction n="1" d={<>a<Sup>2</Sup>-a</>} /> {") : a"} <Sup>-1</Sup>
             </span>
         ),
-        options: ["A) 8/9", "B) 9/10", "C) 10/11", "D) 12/13"],
+        options: ["A) a/(a+1)", "B) a^2/(a-1)", "C) (a+1)/(a-1)", "D) a/(a-1)"],
         optionsNodes: [
-            <>A) <Fraction n="8" d="9" /></>,
-            <>B) <Fraction n="9" d="10" /></>,
-            <>C) <Fraction n="10" d="11" /></>,
-            <>D) <Fraction n="12" d="13" /></>
+            <>A) <Fraction n="a" d="a+1" /></>,
+            <>B) <Fraction n="a^2" d="a-1" /></>,
+            <>C) <Fraction n="a+1" d="a-1" /></>,
+            <>D) <Fraction n="a" d="a-1" /></>
         ],
         correct: 3 // D
     },
@@ -117,259 +115,288 @@ const questions = [
         id: 7,
         text: (
             <span>
-                a, b, c musbat haqiqiy sonlar uchun <Fraction n="a+b" d="a+c" /> &lt; 1 va <Fraction n="a+b" d="b+c" /> &gt; 1 tengsizlik o'rinli bo'lsa,
-                |a - c| + |b - a| - |c - b| ifodani soddalashtiring.
+                7. a, b va c tub sonlar, n, m va l natural sonlar. Agar a = <Sqrt n="n">27</Sqrt>, b = <Sqrt n="m">625</Sqrt>, c = <Sqrt n="l">32</Sqrt> bo'lsa, <Fraction n="a" d="n" /> + <Fraction n="b" d="m" /> + <Fraction n="c" d="l" /> ifodaning qiymatini toping.
             </span>
         ),
-        options: ["A) 2a", "B) -2b", "C) -2a", "D) 2a - 2c"],
+        options: ["A) 4", "B) 5", "C) 6", "D) 7"],
         correct: 2 // C
     },
     {
         id: 8,
         text: (
             <span>
-                A = cos <Fraction n="π" d="4" />, B = cos<Sup>2</Sup> <Fraction n="π" d="4" /> + sin<Sup>2</Sup> <Fraction n="π" d="4" /> bo'lsa,
-                2 \u00b7 (B<Sup>3</Sup> - B) \u00b7 A ifoda qiymati nimaga teng?
+                8. {"{b"}
+                <Sub>n</Sub>
+                {"}"} geometrik progressiyada b<Sub>1</Sub> + b<Sub>2</Sub> + b<Sub>3</Sub> = 108, b<Sub>4</Sub> + b<Sub>5</Sub> + b<Sub>6</Sub> = 4 bo'lsa, <Fraction n={<>b<Sub>10</Sub></>} d={<>b<Sub>16</Sub></>} /> ni toping.
             </span>
         ),
-        options: ["A) cos x", "B) sin x", "C) 0", "D) cos 2x"],
-        correct: 2 // C (since B=1, B^3-B=0)
+        options: ["A) 1/3", "B) 1/9", "C) 3", "D) 9"],
+        optionsNodes: [
+            <>A) <Fraction n="1" d="3" /></>,
+            <>B) <Fraction n="1" d="9" /></>,
+            <>C) 3</>,
+            <>D) 9</>
+        ],
+        correct: 3 // D
     },
     {
         id: 9,
         text: (
             <span>
-                x natural soni uchun <Fraction n="240" d="x" /> + <Fraction n="x" d="6" />
-                soni ham natural son bo'lsa, x nechta farqli qiymat qabul qila oladi?
+                9. {"{a"}
+                <Sub>n</Sub>
+                {"}"} arifmetik progressiyada a<Sub>1</Sub> = 3; d = 2 bo'lsa, a<Sub>4</Sub> + a<Sub>8</Sub> + a<Sub>12</Sub> + ... + a<Sub>100</Sub> ni hisoblang.
             </span>
         ),
-        options: ["A) 8", "B) 5", "C) 6", "D) 7"],
-        correct: 0 // A
+        options: ["A) 2625", "B) 2725", "C) 2825", "D) 2525"],
+        correct: 2 // C
     },
     {
         id: 10,
         text: (
             <span>
-                <Sqrt><>log<Sub>2</Sub>(x-1) + 1</></Sqrt> - <Sqrt><>log<Sub>2</Sub>(2x-2)</></Sqrt> ifodaning
-                x = 7 + 2<Sqrt>10</Sqrt> uchun qiymatini toping.
+                10. a, b, c, d va e sonlari A = {"{2, 4, 5, 6, 10}"} to'plamining bir-biridan farqli elementlaridir. Bunga ko'ra (-2)<Sup>a</Sup> \u00b7 3<Sup>b</Sup> \u00b7 (-4)<Sup>c</Sup> \u00b7 (-5)<Sup>d</Sup> \u00b7 (-7)<Sup>e</Sup> {"> 0"} tengsizlik o'rinli bo'lganda a + d + e yig'indining eng katta qiymati nechaga teng?
             </span>
         ),
-        options: ["A) log2(√2 + √5)", "B) 1", "C) √10", "D) log2 10"],
-        optionsNodes: [
-            <>A) log<Sub>2</Sub>(<Sqrt>2</Sqrt> + <Sqrt>5</Sqrt>)</>,
-            <>B) 1</>,
-            <>C) <Sqrt>10</Sqrt></>,
-            <>D) log<Sub>2</Sub> 10</>
-        ],
+        options: ["A) 21", "B) 20", "C) 18", "D) 15"],
         correct: 1 // B
     },
     {
         id: 11,
         text: (
             <span>
-                {"{b"}
-                <Sub>n</Sub>
-                {"}"} o'suvchi geometrik progressiya uchun
-                b<Sub>1</Sub> + b<Sub>2</Sub> + b<Sub>3</Sub> = 21 va
-                b<Sub>1</Sub> \u00b7 b<Sub>2</Sub> \u00b7 b<Sub>3</Sub> = 64 tenglik o'rinli bo'lsa, S<Sub>5</Sub> ni toping.
-            </span>
-        ),
-        options: ["A) 189", "B) 93", "C) 341", "D) 432"],
-        correct: 2 // C
+                11. <Sqrt><>8 + 2<Sqrt><>10 + 2<Sqrt>5</Sqrt></></Sqrt></Sqrt> + <Sqrt><>8 - 2<Sqrt><>10 + 2<Sqrt>5</Sqrt></></Sqrt></Sqrt> ildizni hisoblang.
+                </span>
+                    ),
+                    options: ["A) √2 + √5", "B) √2 + √3", "C) √2 + √10", "D) √2 + 1"],
+                    optionsNodes: [
+                    <>A) <Sqrt>2</Sqrt> + <Sqrt>5</Sqrt></>,
+                    <>B) <Sqrt>2</Sqrt> + <Sqrt>3</Sqrt></>,
+                    <>C) <Sqrt>2</Sqrt> + <Sqrt>10</Sqrt></>,
+                    <>D) <Sqrt>2</Sqrt> + 1</>
+                    ],
+                    correct: 0 // A
     },
-    {
-        id: 12,
-        text: (
-            <span>
-                (<Sqrt><><Sqrt>3</Sqrt> + <Sqrt>2</Sqrt></></Sqrt> - <Sqrt><><Sqrt>3</Sqrt> - <Sqrt>2</Sqrt></></Sqrt>)
-                ( <Sqrt><><Sqrt>3</Sqrt> + <Sqrt>2</Sqrt></></Sqrt> + <Sqrt><><Sqrt>3</Sqrt> - <Sqrt>2</Sqrt></></Sqrt> )<Sup>-1</Sup>
-                + <Fraction n="1" d={<Sqrt>2</Sqrt>} /> ifodaning qiymatini toping.
-            </span>
-        ),
-        options: ["A) √0.5", "B) √1.5", "C) √3", "D) √2"],
-        optionsNodes: [
-            <>A) <Sqrt>0.5</Sqrt></>,
-            <>B) <Sqrt>1.5</Sqrt></>,
-            <>C) <Sqrt>3</Sqrt></>,
-            <>D) <Sqrt>2</Sqrt></>
-        ],
-        correct: 3 // D
+                    {
+                        id: 12,
+                    text: (
+                    <span>
+                        12. Agar sin α - cos α = <Sqrt><Fraction n="2" d="3" /></Sqrt> bo'lsa, log<Sub>2</Sub> |sin(<Fraction n="π" d="4" /> - α)| + log<Sub>2</Sub> |cos(<Fraction n="π" d="4" /> - α)| ifodaning son qiymatini toping.
+                    </span>
+                    ),
+                    options: ["A) 1", "B) -1", "C) 2/3", "D) -3/2"],
+                    optionsNodes: [
+                    <>A) 1</>,
+                    <>B) -1</>,
+                    <>C) <Fraction n="2" d="3" /></>,
+                    <>D) - <Fraction n="3" d="2" /></>
+                    ],
+                    correct: 3 // D
     },
-    {
-        id: 13,
-        text: (
-            <span>
-                Birinchi hadi 16 ga, ikkinchi hadi 13 ga teng bo'lgan arifmetik progressiyaning nechinchi hadi -41 ga teng?
-            </span>
-        ),
-        options: ["A) 18", "B) 19", "C) 20", "D) 21"],
-        correct: 2 // C
+                    {
+                        id: 13,
+                    text: (
+                    <span>
+                        13. Agar |c| &lt; |b| &lt; |a| va a &lt; 0, b &gt; 0, c &lt; 0 bo'lsa:
+                        <Fraction n={<>a|b-c|</>} d={<>|a|</>} /> + <Fraction n={<>b|c-a|</>} d={<>|b|</>} /> + <Fraction n={<>c|a-b|</>} d={<>|c|</>} />
+                        ifodani soddalashtiring.
+                    </span>
+                    ),
+                    options: ["A) 2a - 2b", "B) 0", "C) 2c - 2a", "D) 2c - 2b"],
+                    correct: 0 // A
     },
-    {
-        id: 14,
-        text: (
-            <span>
-                Tengsizlikni yeching: log<Sub>0.5</Sub> log<Sub>16</Sub>(x<Sup>2</Sup> - 1) &lt; 2
-            </span>
-        ),
-        options: ["A) (-3; 1)", "B) (-∞; -√3) U (√3; ∞)", "C) (-∞; -3) U (3; ∞)", "D) (-3; -1)"],
-        optionsNodes: [
-            <>A) (-3; 1)</>,
-            <>B) (-∞; -<Sqrt>3</Sqrt>) ∪ (<Sqrt>3</Sqrt>; ∞)</>,
-            <>C) (-∞; -3) ∪ (3; ∞)</>,
-            <>D) (-3; -1)</>
-        ],
-        correct: 2 // C
+                    {
+                        id: 14,
+                    text: (
+                    <span>
+                        14. Tenglama nechta haqiqiy ildizga ega? <Sqrt>x</Sqrt> - <Sqrt>x+3</Sqrt> = 1
+                    </span>
+                    ),
+                    options: ["A) 1", "B) 2", "C) Cheksiz ko'p", "D) Ildizga ega emas"],
+                    correct: 3 // D
     },
-    {
-        id: 15,
-        text: (
-            <span>
-                (<Fraction n="4" d="15" />)<Sup>x+2<Sqrt>x</Sqrt>-1</Sup> = (<Fraction n="15" d="4" />)<Sup>x+<Sqrt>x</Sqrt>+1</Sup> tenglamaning barcha haqiqiy ildizlari yig'indisini toping.
-            </span>
-        ),
-        options: ["A) 3/2", "B) 0", "C) 1/2", "D) 1"],
-        optionsNodes: [
-            <>A) <Fraction n="3" d="2" /></>,
-            <>B) 0</>,
-            <>C) <Fraction n="1" d="2" /></>,
-            <>D) 1</>
-        ],
-        correct: 1 // B
+                    {
+                        id: 15,
+                    text: (
+                    <span>
+                        15. Tenglamaning haqiqiy ildizlari yig'indisini toping.
+                        x<Sup>2</Sup> log<Sub>5</Sub> <Sqrt><>5x<Sup>2</Sup>-2x-3</></Sqrt> - x log<Sub>5</Sub>(5x<Sup>2</Sup>-2x-3) = x<Sup>2</Sup> + 2x
+                    </span>
+                    ),
+                    options: ["A) 1", "B) -18/5", "C) -8/5", "D) -13/5"],
+                    optionsNodes: [
+                    <>A) 1</>,
+                    <>B) - <Fraction n="18" d="5" /></>,
+                    <>C) - <Fraction n="8" d="5" /></>,
+                    <>D) - <Fraction n="13" d="5" /></>
+                    ],
+                    correct: 1 // B
     },
-    {
-        id: 16,
-        text: (
-            <span>
-                x<Sup>2</Sup> - 4x + k = 0 tenglamaning ildizlari kvadratlarining farqi 24 ga teng bo'lsa, k ni toping.
-            </span>
-        ),
-        options: ["A) -3", "B) 5", "C) -5", "D) 3"],
-        correct: 2 // C
+                    {
+                        id: 16,
+                    text: (
+                    <span>
+                        16. Tengsizlikni yeching: <Fraction n={<>11 \u00b7 3<Sup>x-1</Sup> - 31</>} d={<>4 \u00b7 9<Sup>x</Sup> - 11 \u00b7 3<Sup>x-1</Sup> - 5</>} /> \u2265 5
+                    </span>
+                    ),
+                    options: ["A) (-∞; -log3 2] U [1 - log3 5; log3 5 - log3 1]", "B) (-∞; -log3 2] U [1 - log3 5; log3 5 + 1]", "C) (-∞; log3 2] U [1 + log3 5; log3 5 - 1]", "D) (-∞; -log3 2] U [1 - log3 5; log3 5 - 1]"],
+                    optionsNodes: [
+                    <>A) (-∞; -log<Sub>3</Sub> 2] ∪ [1 - log<Sub>3</Sub> 5; log<Sub>3</Sub> 5 - 1]</>,
+                    <>B) (-∞; -log<Sub>3</Sub> 2] ∪ [1 - log<Sub>3</Sub> 5; log<Sub>3</Sub> 5 + 1]</>,
+                    <>C) (-∞; log<Sub>3</Sub> 2] ∪ [1 + log<Sub>3</Sub> 5; log<Sub>3</Sub> 5 - 1]</>,
+                    <>D) (-∞; -log<Sub>3</Sub> 2] ∪ [1 - log<Sub>3</Sub> 5; log<Sub>3</Sub> 5 - 1]</>
+                    ],
+                    correct: 0 // A
     },
-    {
-        id: 17,
-        text: (
-            <span>
-                cos x + (2 + <Sqrt>2</Sqrt>) sin<Sup>2</Sup> x = 1 tenglamaning [0; 2π] kesmada nechta ildizi bor?
-            </span>
-        ),
-        options: ["A) 4", "B) 3", "C) 2", "D) 1"],
-        correct: 1 // B
+                    {
+                        id: 17,
+                    text: (
+                    <span>
+                        17. <Fraction n="2-2x" d="2x+3|x|" /> {"> 0"} tengsizlikni qanoatlantiruvchi butun sonlar yig'indisini toping.
+                    </span>
+                    ),
+                    options: ["A) -2", "B) -1", "C) 0", "D) 1"],
+                    correct: 2 // C
     },
-    {
-        id: 18,
-        text: (
-            <span>
-                Tengsizlikni qanoatlantiruvchi butun sonlar nechta? |x - 10| \u00b7 |1 - x| - |30 - 3x| \u2264 0
-            </span>
-        ),
-        options: ["A) 7", "B) 8", "C) 12", "D) 17"],
-        correct: 1 // B
+                    {
+                        id: 18,
+                    text: (
+                    <span>
+                        18. x<Sub>1</Sub> va x<Sub>2</Sub> sonlari ax<Sup>2</Sup> + bx + c = 0 tenglamaning ildizlaridir. Agar Ax<Sup>2</Sup> + Bx + 1 = 0 tenglamaning ildizlari <Fraction n={<>x<Sub>1</Sub></>} d={<>x<Sub>2</Sub></>} /> va <Fraction n={<>x<Sub>2</Sub></>} d={<>x<Sub>1</Sub></>} /> bo'lsa, B quyidagilardan qaysi biriga teng?
+                    </span>
+                    ),
+                    options: ["A) (b^2 - 2ac) / ac", "B) 2 - b^2 / ac", "C) 2 - b^2 / ac^2", "D) b^2 / c - 2"],
+                    optionsNodes: [
+                    <>A) <Fraction n={<>b<Sup>2</Sup> - 2ac</>} d="ac" /></>,
+                    <>B) 2 - <Fraction n={<>b<Sup>2</Sup></>} d="ac" /></>,
+                    <>C) 2 - <Fraction n={<>b<Sup>2</Sup></>} d={<>ac<Sup>2</Sup></>} /></>,
+                    <>D) <Fraction n={<>b<Sup>2</Sup></>} d="c" /> - 2</>
+                    ],
+                    correct: 1 // B
     },
-    {
-        id: 19,
-        text: (
-            <span>
-                <Fraction n={<>x<Sup>17</Sup>-1</>} d={<>1-x<Sup>15</Sup></>} /> = <Fraction n={<>1-x<Sup>15</Sup></>} d={<>x<Sup>15</Sup>-1</>} /> tenglamaning haqiqiy ildizlari yig'indisini toping.
-            </span>
-        ),
-        options: ["A) 13", "B) 1", "C) 0", "D) -1"],
-        correct: 2 // C
+                    {
+                        id: 19,
+                    text: (
+                    <span>
+                        19. <Fraction n="2" d={<>|x+3|-1</>} /> \u2265 |x+2| tengsizlik nechta butun yechimga ega?
+                    </span>
+                    ),
+                    options: ["A) 1", "B) 2", "C) 3", "D) 5"],
+                    correct: 1 // B
     },
-    {
-        id: 20,
-        text: (
-            <span>
-                f(x) = x<Sup>2</Sup> + 4x - 3 + m funksiyaning eng kichik qiymati 2 ga teng. m ning qiymatini toping.
-            </span>
-        ),
-        options: ["A) 7", "B) -3", "C) 9", "D) 11"],
-        correct: 2 // C
+                    {
+                        id: 20,
+                    text: (
+                    <>
+                        <p className="mb-4">20. Quydagi chizmada y = a<Sup>x</Sup> funksiyaning grafigi tasvirlangan. a ning qiymatini toping.</p>
+                        <div className="my-6 flex justify-center bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
+                            <svg width="240" height="200" viewBox="0 0 240 200" className="text-gray-800">
+                                <path d="M20,180 L220,180 M120,20 L120,190" fill="none" stroke="currentColor" strokeWidth="1" />
+                                <path d="M40,40 Q110,180 200,180" fill="none" stroke="currentColor" strokeWidth="2" />
+                                <text x="110" y="160" className="text-xs">1</text>
+                                <text x="125" y="65" className="text-xs">5</text>
+                                <text x="125" y="105" className="text-xs">y</text>
+                                <text x="225" y="175" className="text-xs">x</text>
+                                <path d="M70,70 L120,70" stroke="currentColor" strokeWidth="1" strokeDasharray="2" />
+                                <text x="60" y="75" className="text-xs">-2</text>
+                            </svg>
+                        </div>
+                    </>
+                    ),
+                    options: ["A) -1/25", "B) -1/5", "C) 1/5", "D) 1/25"],
+                    optionsNodes: [
+                    <>A) - <Fraction n="1" d="25" /></>,
+                    <>B) - <Fraction n="1" d="5" /></>,
+                    <>C) <Fraction n="1" d="5" /></>,
+                    <>D) <Fraction n="1" d="25" /></>
+                    ],
+                    correct: 2 // C (Note: a^x where a=1/5, x=-2 gives 25? No, image graph passes through (-2, 25)? Wait graph in image shows (-2, 25) and y-intercept 1. No, y intercept is 1, at x=-2, y=25. So (1/5)^(-2) = 25. Correct.)
     }
-];
+                    ];
 
-export default function MockTest3() {
-    const [answers, setAnswers] = useState<Record<number, number>>({});
-    const [result, setResult] = useState<{ score: number, total: number } | null>(null);
+                    export default function MockTest3() {
+    const [answers, setAnswers] = useState<Record<number, number>>({ });
+                        const [result, setResult] = useState<{ score: number, total: number } | null>(null);
 
     const handleSelect = (questionId: number, optionIndex: number) => {
-        setAnswers(prev => ({ ...prev, [questionId]: optionIndex }));
+                            setAnswers(prev => ({ ...prev, [questionId]: optionIndex }));
     };
 
     const calculateScore = () => {
-        let score = 0;
+                            let score = 0;
         questions.forEach(q => {
             if (answers[q.id] === q.correct) score++;
         });
-        setResult({ score, total: questions.length });
-        window.scrollTo({ top: 0, behavior: "smooth" });
+                        setResult({score, total: questions.length });
+                        window.scrollTo({top: 0, behavior: "smooth" });
     };
 
-    return (
-        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 bg-white min-h-screen">
-            <div className="mb-8">
-                <Link href="/mock-tests" className="text-blue-600 hover:text-blue-800 font-bold flex items-center">
-                    &larr; Chiqish
-                </Link>
-            </div>
+                        return (
+                        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 bg-white min-h-screen">
+                            <div className="mb-8 font-display">
+                                <Link href="/mock-tests" className="text-blue-600 hover:text-blue-800 font-bold flex items-center group transition-all">
+                                    <span className="mr-2 group-hover:-translate-x-1 transition-transform">&larr;</span>
+                                    Bosh sahifaga qaytish
+                                </Link>
+                            </div>
 
-            <div className="mb-12 text-center">
-                <h1 className="text-4xl font-display font-extrabold text-gray-900 mb-4">2025 Namunaviy Test: Algebra</h1>
-                <p className="text-gray-500 max-w-2xl mx-auto">Milliy sertifikat darajasidagi namunaviy test vazifalari.</p>
-            </div>
+                            <div className="mb-12 text-center">
+                                <span className="inline-block px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full text-xs font-bold tracking-widest uppercase mb-4 italic italic">Milliy Sertifikat • 2025</span>
+                                <h1 className="text-5xl font-display font-extrabold text-gray-900 mb-4 tracking-tight">Algebra: Namunaviy Test</h1>
+                                <p className="text-gray-500 max-w-2xl mx-auto text-lg font-light leading-relaxed">Jamshid Saidxonovning 2025-yilgi Namunaviy Testlari asosida tayyorlangan (savollar 1-20).</p>
+                            </div>
 
-            {result && (
-                <div className="mb-12 bg-blue-50 border-2 border-blue-100 p-8 rounded-[2.5rem] text-center animate-in">
-                    <h2 className="text-3xl font-display font-extrabold text-blue-900 mb-2">Natijangiz: {result.score} / {result.total}</h2>
-                    <p className="text-blue-700 text-lg">Siz {Math.round((result.score / result.total) * 100)}% natija qayd etdingiz.</p>
-                </div>
-            )}
-
-            <div className="space-y-12">
-                {questions.map((q) => (
-                    <div key={q.id} className={`premium-card p-0 overflow-hidden border-2 transition-all ${result && answers[q.id] === q.correct ? 'border-green-500 ring-4 ring-green-50' : result && answers[q.id] !== q.correct ? 'border-red-500 ring-4 ring-red-50' : 'border-gray-100'}`}>
-                        <div className="px-8 py-4 bg-gray-50/50 flex justify-between items-center border-b border-gray-100">
-                            <span className="text-sm font-bold text-gray-400 uppercase tracking-widest">{q.id}-SAVOL</span>
                             {result && (
-                                <span className={`text-xs font-bold px-3 py-1 rounded-full uppercase ${answers[q.id] === q.correct ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
-                                    {answers[q.id] === q.correct ? 'To\'g\'ri' : 'Xato'}
-                                </span>
+                                <div className="mb-12 bg-blue-50 border-2 border-blue-100 p-8 rounded-[2.5rem] text-center animate-in shadow-xl shadow-blue-100/20">
+                                    <h2 className="text-4xl font-display font-extrabold text-blue-900 mb-2">Natijangiz: {result.score} / {result.total}</h2>
+                                    <p className="text-blue-700 text-lg">Siz {Math.round((result.score / result.total) * 100)}% natija qayd etdingiz.</p>
+                                </div>
                             )}
-                        </div>
-                        <div className="p-8">
-                            <div className="text-2xl text-gray-900 font-serif leading-relaxed mb-10">{q.text}</div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {q.options.map((opt, idx) => (
-                                    <div
-                                        key={idx}
-                                        onClick={() => !result && handleSelect(q.id, idx)}
-                                        className={`p-5 rounded-2xl border-2 cursor-pointer transition-all flex items-center space-x-4 ${answers[q.id] === idx ? 'border-blue-500 bg-blue-50/50' : 'border-gray-100 hover:border-blue-200 bg-white'}`}
-                                    >
-                                        <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${answers[q.id] === idx ? 'border-blue-500 bg-blue-500' : 'border-gray-200'}`}>
-                                            {answers[q.id] === idx && <div className="w-2 h-2 bg-white rounded-full" />}
+
+                            <div className="space-y-12">
+                                {questions.map((q) => (
+                                    <div key={q.id} className={`premium-card p-0 overflow-hidden border-2 transition-all duration-500 ${result && answers[q.id] === q.correct ? 'border-green-500 bg-green-50/10' : result && answers[q.id] !== q.correct ? 'border-red-500 bg-red-50/10' : 'border-gray-100 hover:shadow-2xl hover:shadow-blue-100/50'}`}>
+                                        <div className="px-8 py-4 bg-gray-50/50 flex justify-between items-center border-b border-gray-100">
+                                            <span className="text-sm font-bold text-gray-400 uppercase tracking-widest font-display">{q.id}-SAVOL</span>
+                                            {result && (
+                                                <span className={`text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest ${answers[q.id] === q.correct ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                                                    {answers[q.id] === q.correct ? 'To\'g\'ri' : 'Xato'}
+                                                </span>
+                                            )}
                                         </div>
-                                        <div className="text-lg text-gray-800 font-medium">
-                                            {q.optionsNodes ? q.optionsNodes[idx] : opt}
+                                        <div className="p-8 md:p-12">
+                                            <div className="text-2xl text-gray-900 font-serif leading-relaxed mb-10 selection:bg-blue-100">{q.text}</div>
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                                {q.options.map((opt, idx) => (
+                                                    <div
+                                                        key={idx}
+                                                        onClick={() => !result && handleSelect(q.id, idx)}
+                                                        className={`p-6 rounded-2xl border-2 cursor-pointer transition-all flex items-center space-x-5 group ${answers[q.id] === idx ? 'border-blue-500 bg-blue-50/50 shadow-lg shadow-blue-100/50' : 'border-gray-100 hover:border-blue-200 bg-white shadow-sm'}`}
+                                                    >
+                                                        <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all ${answers[q.id] === idx ? 'border-blue-500 bg-blue-500' : 'border-gray-200 group-hover:border-blue-300'}`}>
+                                                            {answers[q.id] === idx && <div className="w-2.5 h-2.5 bg-white rounded-full shadow-sm" />}
+                                                        </div>
+                                                        <div className="text-xl text-gray-800 font-medium font-serif leading-none">
+                                                            {q.optionsNodes ? q.optionsNodes[idx] : opt}
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
                                         </div>
                                     </div>
                                 ))}
                             </div>
-                        </div>
-                    </div>
-                ))}
-            </div>
 
-            {!result && (
-                <div className="mt-16 flex justify-center pb-24">
-                    <button
-                        onClick={calculateScore}
-                        className="bg-blue-600 text-white px-16 py-5 rounded-[2rem] font-bold text-xl hover:bg-blue-700 transition-all shadow-2xl shadow-blue-200 active:scale-95"
-                    >
-                        Testni Yakunlash &rarr;
-                    </button>
-                </div>
-            )}
-        </div>
-    );
+                            {!result && (
+                                <div className="mt-16 flex justify-center pb-24">
+                                    <button
+                                        onClick={calculateScore}
+                                        className="bg-blue-600 text-white px-20 py-6 rounded-[2.5rem] font-bold text-2xl hover:bg-blue-700 transition-all shadow-2xl shadow-blue-200 active:scale-95 group"
+                                    >
+                                        Testni Yakunlash <span className="ml-3 group-hover:translate-x-2 transition-transform inline-block">&rarr;</span>
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                        );
 }
