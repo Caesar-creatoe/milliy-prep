@@ -12,7 +12,7 @@ interface TestLink {
 }
 
 interface DifficultyGroup {
-    level: "Oson" | "O'rta" | "Murakkab";
+    level: "Oson" | "O'rta" | "Murakkab" | "Namunaviy Test (2025)";
     tests: TestLink[];
 }
 
@@ -46,7 +46,13 @@ const subjects: Subject[] = [
             {
                 level: "Murakkab",
                 tests: [
-                    { id: "5", name: "5-Sinov Testi (Tez orada)", href: "#", topics: ["Integrallar", "Parametrlar"] },
+                    { id: "5", name: "Murakkab Sinov", href: "#", topics: ["Integrallar", "Parametrlar"] },
+                ]
+            },
+            {
+                level: "Namunaviy Test (2025)",
+                tests: [
+                    { id: "3", name: "Milliy Sertifikat Namunaviy Testi", href: "/mock-tests/3", topics: ["Algebra", "Ehtimollar", "Funksiyalar"] },
                 ]
             }
         ]
@@ -60,7 +66,7 @@ const subjects: Subject[] = [
             {
                 level: "Oson",
                 tests: [
-                    { id: "4", name: "4-Sinov Testi (Tez orada)", href: "#", topics: ["Burchaklar", "Uchburchaklar"] },
+                    { id: "4", name: "Boshlang'ich Geometriya", href: "#", topics: ["Burchaklar", "Uchburchaklar"] },
                 ]
             },
             {
@@ -72,7 +78,13 @@ const subjects: Subject[] = [
             {
                 level: "Murakkab",
                 tests: [
-                    { id: "6", name: "6-Sinov Testi (Tez orada)", href: "#", topics: ["Vektorlar", "Stereometriya"] },
+                    { id: "6", name: "Murakkab Geometriya", href: "#", topics: ["Vektorlar", "Stereometriya"] },
+                ]
+            },
+            {
+                level: "Namunaviy Test (2025)",
+                tests: [
+                    { id: "4", name: "Milliy Sertifikat Namunaviy Testi", href: "/mock-tests/4", topics: ["Geometriya", "Sterometriya", "Trigonometriya"] },
                 ]
             }
         ]
