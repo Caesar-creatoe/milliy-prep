@@ -7,9 +7,10 @@ interface CardProps {
     actionText?: string;
     difficulty?: "Oson" | "O'rta" | "Murakkab";
     topics?: string[];
+    number?: string | number;
 }
 
-export default function Card({ title, description, href, actionText = "Boshlash", difficulty, topics }: CardProps) {
+export default function Card({ title, description, href, actionText = "Boshlash", difficulty, topics, number }: CardProps) {
     const isAvailable = href !== "#";
 
     const difficultyColors = {
@@ -23,7 +24,7 @@ export default function Card({ title, description, href, actionText = "Boshlash"
             <div>
                 <div className="flex justify-between items-start mb-6">
                     <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-bold text-xl ${isAvailable ? 'bg-blue-600 text-white shadow-lg shadow-blue-100' : 'bg-gray-200 text-gray-500'}`}>
-                        {title.includes('#') ? title.split('#')[1] : title.split(' ')[0][0]}
+                        {number || (title.includes('#') ? title.split('#')[1] : title.split(' ')[0][0])}
                     </div>
                     <div className="flex flex-col items-end space-y-2">
                         {isAvailable && (

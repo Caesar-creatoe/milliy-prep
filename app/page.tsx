@@ -6,14 +6,14 @@ export default function Home() {
     <div className="relative min-h-screen">
       {/* Background Decor */}
       <div className="absolute inset-0 math-bg opacity-5 pointer-events-none" />
-      <div className="absolute top-0 right-0 w-[50%] h-[50%] bg-blue-50/50 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[50%] h-[50%] bg-blue-50/20 rounded-full blur-[120px] pointer-events-none" />
 
       <main className="relative">
         {/* Hero Section */}
         <div className="max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8">
           <div className="text-center animate-in">
             <span className="inline-block px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full text-xs font-bold tracking-widest uppercase mb-8 border border-blue-100 shadow-sm">
-              2024 Yangilangan Testlar
+              2025 Yangilangan Testlar
             </span>
             <h1 className="text-6xl md:text-7xl font-display font-extrabold text-gray-900 tracking-tight mb-8">
               Milliy Sertifikatga <br />
@@ -71,15 +71,17 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-2">
             <Card
-              title="1-Sinov Testi"
-              description="Algebraik ifodalar, tenglamalar va tengsizliklar bo'yicha imtihon darajasidagi 8 ta asosiy masala."
-              href="/mock-tests/1"
+              number="1"
+              title="Namunaviy Algebra (2025)"
+              description="Jamshid Saidxonovning 2025-yilgi namunaviy testi. Algebra bo'limidan 20 ta professional masala."
+              href="/mock-tests/3"
               actionText="Testni Boshlash"
             />
             <Card
-              title="2-Sinov Testi"
-              description="Logarifmik funksiyalar, progressiyalar va geometrik masalalarni o'z ichiga olgan mukammal test."
-              href="/mock-tests/2"
+              number="2"
+              title="Namunaviy Geometriya (2025)"
+              description="Geometriya, sterometriya va oliy matematika elementlari bo'yicha 2025-yilgi namunaviy test (20 ta masala)."
+              href="/mock-tests/4"
               actionText="Testni Boshlash"
             />
           </div>
